@@ -5,6 +5,12 @@ Say goodbye to boring blocky identicons that look like they came out of the 70s,
 
 ![example](./example.png)
 
+## Installation
+
+```
+npm install jazzicon -S
+```
+
 ## Usage
 
 Takes a pixel diameter and a javascript integer (seeds the shape), and gives you back a DOM element to use as you wish!
