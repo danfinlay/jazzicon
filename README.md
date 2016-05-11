@@ -18,3 +18,7 @@ for(var i = 0; i < 60; i++) {
   body.appendChild(el)
 }
 ```
+
+## Example
+
+You can run an example by installing beefy (`npm i -g beefy`) and then running `npm run sample`.
