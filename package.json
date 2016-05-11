@@ -1,16 +1,29 @@
 {
   "name": "jazzicon",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Say goodbye to boring blocky identicons that look like they came out of the 70s, and replace them with jazzy, colorful collages that more likely came out of the 80's.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sample": "beefy sample.js --live --open"
   },
-  "author": "",
+  "author": "Dan Finlay",
   "license": "ISC",
   "dependencies": {
     "mersenne-twister": "^1.0.1",
     "raphael": "^2.2.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyswatter/jazzicon.git"
+  },
+  "keywords": [
+    "identicon",
+    "jazz"
+  ],
+  "bugs": {
+    "url": "https://github.com/flyswatter/jazzicon/issues"
+  },
+  "homepage": "https://github.com/flyswatter/jazzicon#readme"
 }
