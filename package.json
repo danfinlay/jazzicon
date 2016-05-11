@@ -1,14 +1,16 @@
 {
-  "name": "identicon_gen",
+  "name": "jazzicon",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sample": "beefy sample.js --live --open"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mersenne-twister": "^1.0.1",
     "raphael": "^2.2.0"
   }
 }
