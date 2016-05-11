@@ -18,7 +18,7 @@ npm install jazzicon -S
 Takes a pixel diameter and a javascript integer (seeds the shape), and gives you back a DOM element to use as you wish!
 
 ```javascript
-var jazzicon = require('./jazzicon')
+var jazzicon = require('jazzicon')
 
 var body = document.querySelector('body')
 for(var i = 0; i < 60; i++) {
