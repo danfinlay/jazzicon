@@ -9,8 +9,6 @@ function newPaper(diameter) {
   container.style.width = '' + diameter + 'px'
   container.style.height = '' + diameter + 'px'
   container.style.display = 'inline-block'
-  var canvas = document.createElement('canvas')
-  container.appendChild(canvas)
   var paper = Raphael(container, 100, 100);
   return {
     paper: paper,
