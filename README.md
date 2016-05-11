@@ -1,6 +1,8 @@
 # Jazzicon
 ## Jazzy Identicons
 
+[Live Example](http://requirebin.com/?gist=64341df46d79cc72567417c022e9d0ee)
+
 Say goodbye to boring blocky identicons that look like they came out of the 70s, and replace them with jazzy, colorful collages that more likely came out of the 80's.
 
 ![example](./example.png)
