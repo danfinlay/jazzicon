@@ -1,6 +1,6 @@
 {
   "name": "jazzicon",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Say goodbye to boring blocky identicons that look like they came out of the 70s, and replace them with jazzy, colorful collages that more likely came out of the 80's.",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "author": "Dan Finlay",
   "license": "ISC",
   "dependencies": {
+    "color": "^0.11.1",
     "mersenne-twister": "^1.0.1",
     "raphael": "^2.2.0"
   },
