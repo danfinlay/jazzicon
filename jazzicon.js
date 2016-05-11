@@ -1,5 +1,6 @@
 var MersenneTwister = require('mersenne-twister');
 var paperGen = require('./paper')
+var Color = require('color')
 var colors = require('./colors')
 var shapeCount = 4
 
@@ -7,14 +8,14 @@ module.exports = generateIdenticon
 
 var generator
 function generateIdenticon(diameter, seed) {
-  var elements = paperGen()
+  generator = new MersenneTwister(seed);
+
+  var elements = paperGen(diameter)
   var paper = elements.paper
   var container = elements.container
 
-  var remainingColors = colors.slice()
+  var remainingColors = hueShift(colors.slice(), generator)
 
-  console.log("my seed is " + seed)
-  generator = new MersenneTwister(seed);
 
   var bkgnd = paper.rect(0, 0, diameter, diameter);
   bkgnd.attr("fill", genColor(remainingColors));
@@ -44,4 +45,14 @@ function genColor(colors) {
   var idx = Math.floor(colors.length * generator.random())
   var color = colors.splice(idx,1)[0]
   return color
+}
+
+var wobble = 30
+function hueShift(colors, generator) {
+  var amount = (generator.random() * 30) - (wobble / 2)
+  return colors.map(function(hex) {
+    var color = Color(hex)
+    color.rotate(amount)
+    return color.hexString()
+  })
 }
