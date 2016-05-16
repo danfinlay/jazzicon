@@ -11,7 +11,7 @@ var maxWidth = 1000
 var angleMod = 3
 var possibleRotations = 21
 var excessShown = 3
-var minOpacity = 0.6
+var minOpacity = 0.7
 
 // export
 module.exports = generateIdenticon
