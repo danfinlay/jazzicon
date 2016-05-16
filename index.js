@@ -1,18 +1,22 @@
+// dependencies
 var MersenneTwister = require('mersenne-twister');
 var paperGen = require('./paper')
 var Color = require('color')
 var colors = require('./colors')
 
-// Parameters
-var shapeCount = 7
-var colorWobble = 45
+// parameters
+var shapeCount = 4
+var colorWobble = 30
 var maxWidth = 1000
 var angleMod = 3
 var possibleRotations = 21
-var excessShown = 2
+var excessShown = 3
+var minOpacity = 0.6
 
+// export
 module.exports = generateIdenticon
 
+// main
 var generator
 function generateIdenticon(diameter, seed) {
   console.log(`GENERATING IDENTICON ${seed}`)
@@ -53,8 +57,9 @@ function newGenShape(paper, remainingColors, diam, i, total) {
 
   var shape = paper.path(str);
 
-  var transRange = diam / total
-  var fixed = transRange * (i + excessShown)
+  var fudge = total + excessShown
+  var transRange = diam / fudge
+  var fixed = transRange * (i + 1)
 
   var transX = fixed + (transRange * generator.random() * i)
   var transY = fixed + (transRange * generator.random() * i)
@@ -71,7 +76,8 @@ function newGenShape(paper, remainingColors, diam, i, total) {
 
   //shape.rotate(180* generator.random(), rad, rad)
 
-  shape.attr('fill', Color(genColor(remainingColors)).alpha(1.0).rgbString());
+  var alpha = minOpacity + (generator.random() * (1 - minOpacity))
+  shape.attr('fill', Color(genColor(remainingColors)).alpha(alpha).rgbString());
   shape.attr('stroke', 'none');
 }
 
