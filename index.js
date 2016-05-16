@@ -5,9 +5,11 @@ var colors = require('./colors')
 
 // Parameters
 var shapeCount = 7
-var wobble = 20
+var colorWobble = 45
 var maxWidth = 1000
 var angleMod = 3
+var possibleRotations = 21
+var excessShown = 2
 
 module.exports = generateIdenticon
 
@@ -52,7 +54,7 @@ function newGenShape(paper, remainingColors, diam, i, total) {
   var shape = paper.path(str);
 
   var transRange = diam / total
-  var fixed = transRange * (i + 1)
+  var fixed = transRange * (i + excessShown)
 
   var transX = fixed + (transRange * generator.random() * i)
   var transY = fixed + (transRange * generator.random() * i)
@@ -64,7 +66,7 @@ function newGenShape(paper, remainingColors, diam, i, total) {
     transY,
   }, null, 2))
 
-  shape.rotate(360 * generator.random(), rad, rad)
+  shape.rotate(360 / ((generator.random() * possibleRotations) % possibleRotations), rad, rad)
   shape.translate(transX, transY)
 
   //shape.rotate(180* generator.random(), rad, rad)
@@ -95,7 +97,7 @@ function genColor(colors) {
 }
 
 function hueShift(colors, generator) {
-  var amount = (generator.random() * wobble) - (wobble / 2)
+  var amount = (generator.random() * colorWobble) - (colorWobble / 2)
   return colors.map(function(hex) {
     var color = Color(hex)
     color.rotate(amount)
