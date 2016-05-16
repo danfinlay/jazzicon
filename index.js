@@ -34,10 +34,16 @@ function generateIdenticon(diameter, seed) {
   bkgnd.attr("fill", genColor(remainingColors));
   bkgnd.attr('stroke', 'none');
 
+  var msgs = []
   for(var i = 0; i < shapeCount - 1; i++) {
-    newGenShape(paper, remainingColors, diameter, i, shapeCount - 1)
+    var msg = newGenShape(paper, remainingColors, diameter, i, shapeCount - 1)
+    msgs.push(msg)
   }
 
+  container.onclick = function() {
+    console.log('ELEMENT GENERATED WITH SEED ' + seed)
+    console.dir(msgs)
+  }
   return container
 }
 
@@ -53,7 +59,8 @@ function newGenShape(paper, remainingColors, diam, i, total) {
   str += `L ${d*2},${d*2} `
   str += `L 0,${d*2} `
   str += `L 0,0 `
-  console.log(str)
+
+  var msg = `Path str is: ${str}\n`
 
   var shape = paper.path(str);
 
@@ -64,12 +71,14 @@ function newGenShape(paper, remainingColors, diam, i, total) {
   var transX = fixed + (transRange * generator.random() * i)
   var transY = fixed + (transRange * generator.random() * i)
 
-  console.log(JSON.stringify({
+  var transforms = JSON.stringify({
     transRange,
     fixed,
     transX,
     transY,
-  }, null, 2))
+  }, null, 2)
+  console.log(transforms)
+  msg += `Transforms are: ${transforms}`
 
   shape.rotate(360 / ((generator.random() * possibleRotations) % possibleRotations), rad, rad)
   shape.translate(transX, transY)
@@ -79,6 +88,8 @@ function newGenShape(paper, remainingColors, diam, i, total) {
   var alpha = minOpacity + (generator.random() * (1 - minOpacity))
   shape.attr('fill', Color(genColor(remainingColors)).alpha(alpha).rgbString());
   shape.attr('stroke', 'none');
+
+  return msg
 }
 
 function genShape(paper, remainingColors, diam, i, total) {
