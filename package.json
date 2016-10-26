@@ -1,18 +1,18 @@
 {
-  "name": "jazzicon",
-  "version": "1.1.5",
-  "description": "Say goodbye to boring blocky identicons that look like they came out of the 70s, and replace them with jazzy, colorful collages that more likely came out of the 80's.",
+  "name": "react-hyperscript-beefy-boilerplate",
+  "version": "1.0.0",
+  "description": "A starter project using react-hyperscript and beefy with ES6.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sample": "beefy sample.js --live --open"
+    "start": "beefy sample.js --live --open"
   },
   "author": "Dan Finlay",
   "license": "ISC",
   "dependencies": {
-    "color": "^0.11.1",
-    "mersenne-twister": "^1.0.1",
-    "raphael": "^2.2.0"
+    "color": "^0.11.3",
+    "mersenne-twister": "^1.1.0",
+    "raphael": "^2.2.6"
   },
   "devDependencies": {},
   "repository": {
