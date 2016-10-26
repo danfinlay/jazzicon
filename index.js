@@ -3,32 +3,27 @@ var paperGen = require('./paper')
 var Color = require('color')
 var colors = require('./colors')
 var shapeCount = 4
+var svgns = 'http://www.w3.org/2000/svg'
 
 module.exports = generateIdenticon
 
 var generator
 function generateIdenticon(diameter, seed) {
   generator = new MersenneTwister(seed);
+  var remainingColors = hueShift(colors.slice(), generator)
 
-  var elements = paperGen(diameter)
+  var elements = paperGen(diameter, genColor(remainingColors))
   var paper = elements.paper
   var container = elements.container
 
-  var remainingColors = hueShift(colors.slice(), generator)
-
-
-  var bkgnd = paper.rect(0, 0, diameter, diameter);
-  bkgnd.attr("fill", genColor(remainingColors));
-  bkgnd.attr('stroke', 'none');
-
   for(var i = 0; i < shapeCount - 1; i++) {
-    genShape(paper, remainingColors, diameter, i, shapeCount - 1)
+    genShape(paper, remainingColors, diameter, i, shapeCount - 1, container)
   }
 
   return container
 }
 
-function genShape(paper, remainingColors, diameter, i, total) {
+function genShape(paper, remainingColors, diameter, i, total, container) {
   var shape = paper.rect(0, 0, diameter, diameter);
   shape.rotate(360 * generator.random())
 
