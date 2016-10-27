@@ -13,7 +13,6 @@ function generateIdenticon(diameter, seed) {
   var remainingColors = hueShift(colors.slice(), generator)
 
   var elements = paperGen(diameter, genColor(remainingColors))
-  var paper = elements.paper
   var container = elements.container
 
   var svg = document.createElementNS(svgns, 'svg')
@@ -25,13 +24,13 @@ function generateIdenticon(diameter, seed) {
   container.appendChild(svg)
 
   for(var i = 0; i < shapeCount - 1; i++) {
-    genShape(paper, remainingColors, diameter, i, shapeCount - 1, svg)
+    genShape(remainingColors, diameter, i, shapeCount - 1, svg)
   }
 
   return container
 }
 
-function genShape(paper, remainingColors, diameter, i, total, svg) {
+function genShape(remainingColors, diameter, i, total, svg) {
   var center = diameter / 2
 
   var shape = document.createElementNS(svgns, 'rect')
@@ -53,14 +52,10 @@ function genShape(paper, remainingColors, diameter, i, total, svg) {
   var secondRot = generator.random()
   var rot = (firstRot * 360) + secondRot * 180
   var rotate = 'rotate(' + rot.toFixed(1) + ' ' + center + ' ' + center + ')'
-  console.log(rotate)
   var transform = translate + ' ' + rotate
-  console.log(transform)
   shape.setAttributeNS(null, 'transform', transform)
   var fill = genColor(remainingColors)
   shape.setAttributeNS(null, 'fill', fill)
-
-  console.log('angle %s ammount %s makes %s and %s for %s', angle, velocity, translate, rotate, fill)
 
   svg.appendChild(shape)
 }
