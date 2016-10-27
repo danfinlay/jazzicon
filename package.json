@@ -1,6 +1,6 @@
 {
   "name": "react-hyperscript-beefy-boilerplate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A starter project using react-hyperscript and beefy with ES6.",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "color": "^0.11.3",
-    "mersenne-twister": "^1.1.0",
-    "raphael": "^2.2.6"
+    "mersenne-twister": "^1.1.0"
   },
   "devDependencies": {},
   "repository": {
