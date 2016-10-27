@@ -1,5 +1,3 @@
-var Raphael = require('raphael')
-
 function newPaper(diameter, color) {
   var container = document.createElement('div')
   container.style.borderRadius = '50px'
@@ -10,9 +8,7 @@ function newPaper(diameter, color) {
   container.style.height = '' + diameter + 'px'
   container.style.display = 'inline-block'
   container.style.background = color
-  var paper = Raphael(container, 100, 100);
   return {
-    paper: paper,
     container: container,
   }
 }

@@ -16,23 +16,53 @@ function generateIdenticon(diameter, seed) {
   var paper = elements.paper
   var container = elements.container
 
+  var svg = document.createElementNS(svgns, 'svg')
+  svg.setAttributeNS(null, 'x', '0')
+  svg.setAttributeNS(null, 'y', '0')
+  svg.setAttributeNS(null, 'width', diameter)
+  svg.setAttributeNS(null, 'height', diameter)
+
+  container.appendChild(svg)
+
   for(var i = 0; i < shapeCount - 1; i++) {
-    genShape(paper, remainingColors, diameter, i, shapeCount - 1, container)
+    genShape(paper, remainingColors, diameter, i, shapeCount - 1, svg)
   }
 
   return container
 }
 
-function genShape(paper, remainingColors, diameter, i, total, container) {
-  var shape = paper.rect(0, 0, diameter, diameter);
-  shape.rotate(360 * generator.random())
+function genShape(paper, remainingColors, diameter, i, total, svg) {
+  var center = diameter / 2
 
-  var trans = diameter / total * generator.random() + (i * diameter / total)
-  shape.translate(trans)
+  var shape = document.createElementNS(svgns, 'rect')
+  shape.setAttributeNS(null, 'x', '0')
+  shape.setAttributeNS(null, 'y', '0')
+  shape.setAttributeNS(null, 'width', diameter)
+  shape.setAttributeNS(null, 'height', diameter)
 
-  shape.rotate(180 * generator.random())
-  shape.attr('fill', genColor(remainingColors));
-  shape.attr('stroke', 'none');
+  var firstRot = generator.random()
+  var angle = Math.PI * 2 * firstRot
+  var velocity = diameter / total * generator.random() + (i * diameter / total)
+
+  var tx = (Math.cos(angle) * velocity)
+  var ty = (Math.sin(angle) * velocity)
+
+  var translate = 'translate(' + tx + ' ' +  ty + ')'
+
+  // Third random is a shape rotation on top of all of that.
+  var secondRot = generator.random()
+  var rot = (firstRot * 360) + secondRot * 180
+  var rotate = 'rotate(' + rot.toFixed(1) + ' ' + center + ' ' + center + ')'
+  console.log(rotate)
+  var transform = translate + ' ' + rotate
+  console.log(transform)
+  shape.setAttributeNS(null, 'transform', transform)
+  var fill = genColor(remainingColors)
+  shape.setAttributeNS(null, 'fill', fill)
+
+  console.log('angle %s ammount %s makes %s and %s for %s', angle, velocity, translate, rotate, fill)
+
+  svg.appendChild(shape)
 }
 
 function genColor(colors) {
