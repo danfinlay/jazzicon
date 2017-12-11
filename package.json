@@ -16,14 +16,14 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flyswatter/jazzicon.git"
+    "url": "git+https://github.com/danfinlay/jazzicon.git"
   },
   "keywords": [
     "identicon",
     "jazz"
   ],
   "bugs": {
-    "url": "https://github.com/flyswatter/jazzicon/issues"
+    "url": "https://github.com/danfinlay/jazzicon/issues"
   },
-  "homepage": "https://github.com/flyswatter/jazzicon#readme"
+  "homepage": "https://github.com/danfinlay/jazzicon#readme"
 }
