@@ -1,13 +1,16 @@
 {
-  "name": "jazzicon",
+  "name": "@metamask/jazzicon",
   "version": "2.0.0",
-  "description": "A starter project using react-hyperscript and beefy with ES6.",
+  "description": "Jazzy deterministic identicons for a more entertaining future",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "beefy sample.js --live --open"
   },
-  "author": "Dan Finlay",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "license": "ISC",
   "dependencies": {
     "color": "^0.11.3",
@@ -16,14 +19,14 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flyswatter/jazzicon.git"
+    "url": "git+https://github.com/MetaMask/jazzicon.git"
   },
   "keywords": [
     "identicon",
     "jazz"
   ],
   "bugs": {
-    "url": "https://github.com/flyswatter/jazzicon/issues"
+    "url": "https://github.com/MetaMask/jazzicon/issues"
   },
-  "homepage": "https://github.com/flyswatter/jazzicon#readme"
+  "homepage": "https://github.com/MetaMask/jazzicon#readme"
 }
