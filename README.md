@@ -29,4 +29,4 @@ for(var i = 0; i < 60; i++) {
 
 ## Example
 
-You can run an example by installing beefy (`npm i -g beefy`) and then running `npm run sample`.
+You can run an example by installing beefy (`npm i -g beefy`) and then running `npm start`.
