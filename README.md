@@ -10,7 +10,7 @@ Say goodbye to boring blocky identicons that look like they came out of the 70s,
 ## Installation
 
 ```
-npm install jazzicon -S
+npm install @metamask/jazzicon
 ```
 
 ## Usage
