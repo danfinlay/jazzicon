@@ -6,7 +6,10 @@ const SHAPE_COUNT = 4;
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const WOBBLE = 30;
 
-function hueShift(colors: string[], generator: MersenneTwister): string[] {
+function hueShift(
+  colors: readonly string[],
+  generator: MersenneTwister
+): string[] {
   const amount = generator.random() * 30 - WOBBLE / 2;
   return colors.map((hex) => {
     const color = Color(hex);
@@ -47,13 +50,13 @@ function genShape(
   const tx = Math.cos(angle) * velocity;
   const ty = Math.sin(angle) * velocity;
 
-  const translate = "translate(" + tx + " " + ty + ")";
+  const translate = `translate(${tx} ${ty})`;
 
   // Third random is a shape rotation on top of all of that.
   const secondRot = generator.random();
 
   const rot = firstRot * 360 + secondRot * 180;
-  const rotate = "rotate(" + rot.toFixed(1) + " " + center + " " + center + ")";
+  const rotate = `rotate(${rot.toFixed(1)} ${center} ${center})`;
   const transform = translate + " " + rotate;
   shape.setAttributeNS(null, "transform", transform);
   const fill = removeRandomColor(remainingColors, generator);
@@ -68,8 +71,8 @@ function newContainer(diameter: number, color: string): HTMLDivElement {
   container.style.overflow = "hidden";
   container.style.padding = "0px";
   container.style.margin = "0px";
-  container.style.width = diameter + "px";
-  container.style.height = diameter + "px";
+  container.style.width = `${diameter}px`;
+  container.style.height = `${diameter}px`;
   container.style.display = "inline-block";
   container.style.background = color;
   return container;
@@ -80,7 +83,7 @@ export default function generateIdenticon(
   seed: number
 ): HTMLDivElement {
   const generator = new MersenneTwister(seed);
-  const remainingColors = hueShift(colors.slice(), generator);
+  const remainingColors = hueShift(colors, generator);
 
   const container = newContainer(
     diameter,
