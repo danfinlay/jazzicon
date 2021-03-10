@@ -3,7 +3,7 @@ import MersenneTwister from "mersenne-twister";
 
 import DEFAULT_COLORS from "./colors";
 
-const SHAPE_COUNT = 4;
+const SHAPE_COUNT = 3;
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const WOBBLE = 30;
 
@@ -99,8 +99,8 @@ export default function generateIdenticon(
 
   container.appendChild(svg);
 
-  for (let i = 0; i < SHAPE_COUNT - 1; i++) {
-    genShape(remainingColors, diameter, i, SHAPE_COUNT - 1, svg, generator);
+  for (let i = 0; i < SHAPE_COUNT; i++) {
+    genShape(remainingColors, diameter, i, SHAPE_COUNT, svg, generator);
   }
 
   return container;
