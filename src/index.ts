@@ -1,6 +1,7 @@
 import Color from "color";
 import MersenneTwister from "mersenne-twister";
-import colors from "./colors";
+
+import DEFAULT_COLORS from "./colors";
 
 const SHAPE_COUNT = 4;
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
@@ -83,7 +84,7 @@ export default function generateIdenticon(
   seed: number
 ): HTMLDivElement {
   const generator = new MersenneTwister(seed);
-  const remainingColors = hueShift(colors, generator);
+  const remainingColors = hueShift(DEFAULT_COLORS, generator);
 
   const container = newContainer(
     diameter,

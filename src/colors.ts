@@ -1,4 +1,4 @@
-const colors: readonly string[] = [
+const DEFAULT_COLORS: readonly string[] = [
   "#01888C", // teal
   "#FC7500", // bright orange
   "#034F5D", // dark teal
@@ -11,4 +11,4 @@ const colors: readonly string[] = [
   "#F19E02", // gold
 ];
 
-export default colors;
+export default DEFAULT_COLORS;
