@@ -1,5 +1,5 @@
-import Color from "color";
-import MersenneTwister from "mersenne-twister";
+const MersenneTwister = require("mersenne-twister");
+const Color = require("color");
 
 import DEFAULT_COLORS from "./colors";
 
@@ -9,19 +9,19 @@ const WOBBLE = 30;
 
 function hueShift(
   colors: readonly string[],
-  generator: MersenneTwister
+  generator: typeof MersenneTwister
 ): string[] {
   const amount = generator.random() * 30 - WOBBLE / 2;
   return colors.map((hex) => {
-    const color = Color(hex);
+    const color = new Color(hex);
     color.rotate(amount);
-    return color.hexString();
+    return color.hex();
   });
 }
 
 function removeRandomColor(
   colors: string[],
-  generator: MersenneTwister
+  generator: typeof MersenneTwister
 ): string {
   const idx = Math.floor(colors.length * generator.random());
   return colors.splice(idx, 1)[0];
@@ -33,7 +33,7 @@ function genShape(
   i: number,
   total: number,
   svg: SVGElement,
-  generator: MersenneTwister
+  generator: typeof MersenneTwister
 ) {
   const center = diameter / 2;
 
@@ -56,9 +56,9 @@ function genShape(
   // Third random is a shape rotation on top of all of that.
   const secondRot = generator.random();
 
-  const rot = firstRot * 360 + secondRot * 180;
-  const rotate = `rotate(${rot.toFixed(1)} ${center} ${center})`;
-  const transform = translate + " " + rotate;
+  const degreeRotation = firstRot * 360 + secondRot * 180;
+  const rotate = `rotate(${degreeRotation.toFixed(1)} ${center} ${center})`;
+  const transform = `${translate} ${rotate}`;
   shape.setAttributeNS(null, "transform", transform);
   const fill = removeRandomColor(remainingColors, generator);
   shape.setAttributeNS(null, "fill", fill);
