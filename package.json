@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "beefy sample.js --live --open"
+    "start": "beefy sample.js --live --open",
+    "build-demo": "mkdir -p demo-build && browserify demo/main.js -o demo-build/main.js && cp demo/index.html demo-build/index.html"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -18,7 +19,9 @@
   "dependencies": {
     "mersenne-twister": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MetaMask/jazzicon.git"

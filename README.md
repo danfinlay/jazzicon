@@ -27,6 +27,6 @@ for(var i = 0; i < 60; i++) {
 }
 ```
 
-## Example
+## Demo
 
-You can run an example by installing beefy (`npm i -g beefy`) and then running `npm run sample`.
+You can run a demo by running `npm run build-demo`, then opening `demo-build/index.html` in your browser.

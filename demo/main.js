@@ -1,4 +1,4 @@
-var jazzicon = require('./')
+var jazzicon = require('../')
 
 var body = document.querySelector('body')
 for(var i = 0; i < 600; i++) {
