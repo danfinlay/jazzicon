@@ -33,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/MetaMask/jazzicon/issues"
   },
-  "homepage": "https://github.com/MetaMask/jazzicon#readme"
+  "homepage": "https://github.com/MetaMask/jazzicon#readme",
+  "engines": {
+    "node": "^18.16 || >=20"
+  }
 }
