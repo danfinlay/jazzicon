@@ -1,0 +1,42 @@
+name: Publish Release
+
+on:
+  workflow_call:
+    secrets:
+      NPM_TOKEN:
+        required: true
+
+jobs:
+  publish-release:
+    environment: npm-publish
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      - uses: MetaMask/action-publish-release@bc0d19824e88e009af68413d7fd01278f79436b8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install and build
+        run: |
+          npm i
+          npm run build
+      - name: Dry Run Publish
+        # omit npm-token token to perform dry run publish
+        uses: MetaMask/action-npm-publish@v1.1.0
+        env:
+          SKIP_PREPACK: true
+      - name: Publish
+        uses: MetaMask/action-npm-publish@v1.1.0
+        with:
+          # This `NPM_TOKEN` needs to be manually set per-repository.
+          # Look in the repository settings under "Environments", and set this token in the `npm-publish` environment.
+          npm-token: ${{ secrets.NPM_TOKEN }}
+        env:
+          SKIP_PREPACK: true

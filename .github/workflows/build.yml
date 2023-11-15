@@ -1,0 +1,28 @@
+name: Build Example
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm i
+      - run: npm run build-demo
+      - name: Require clean working directory
+        shell: bash
+        run: |
+          if ! git diff --exit-code -- . ':!dist/*.map'; then
+            echo "Working tree dirty at end of job"
+            exit 1
+          fi
